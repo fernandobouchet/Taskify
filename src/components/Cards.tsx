@@ -16,6 +16,11 @@ const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
       )
     );
   };
+
+  const handleDelete = (id: number) => {
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  };
+
   return (
     <div
       style={{
@@ -34,7 +39,7 @@ const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
         <span>
           <AiOutlineEdit />
         </span>
-        <span>
+        <span onClick={() => handleDelete(todo.id)}>
           <AiOutlineDelete />
         </span>
         <span onClick={() => handleDone(todo.id)}>
