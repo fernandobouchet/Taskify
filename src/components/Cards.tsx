@@ -9,6 +9,13 @@ interface Props {
 }
 
 const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
+  const handleDone = (id: number) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
+      )
+    );
+  };
   return (
     <div
       style={{
@@ -18,7 +25,11 @@ const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
         gap: "100px",
       }}
     >
-      <h2>{todo.todo}</h2>
+      {todo.isDone ? (
+        <h2 style={{ textDecorationLine: "line-through" }}>{todo.todo}</h2>
+      ) : (
+        <h2>{todo.todo}</h2>
+      )}
       <div style={{ display: "flex", cursor: "pointer" }}>
         <span>
           <AiOutlineEdit />
@@ -26,7 +37,7 @@ const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
         <span>
           <AiOutlineDelete />
         </span>
-        <span>
+        <span onClick={() => handleDone(todo.id)}>
           <AiOutlineCheck />
         </span>
       </div>
