@@ -1,5 +1,5 @@
 import React from "react";
-import { Todo } from "./Todo";
+import { Todo } from "./Types";
 import { AiOutlineEdit, AiOutlineDelete, AiOutlineCheck } from "react-icons/ai";
 
 interface Props {

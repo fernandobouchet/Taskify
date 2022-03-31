@@ -1,6 +1,6 @@
 import React from "react";
 import Cards from "./Cards";
-import { Todo } from "./Todo";
+import { Todo } from "./Types";
 
 interface Props {
   todos: Todo[];

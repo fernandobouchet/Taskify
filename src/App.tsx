@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Header from "./components/Header";
 import InputField from "./components/InputField";
 import TodoList from "./components/TodoList";
-import { Todo } from "./components/Todo";
+import { Todo } from "./components/Types";
 
 const App: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
