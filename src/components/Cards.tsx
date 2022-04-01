@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { Todo } from "./Types";
 import { AiOutlineEdit, AiOutlineDelete, AiOutlineCheck } from "react-icons/ai";
 
@@ -9,6 +10,10 @@ interface Props {
 }
 
 const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
+  const [edit, setEdit] = useState<Boolean>(false);
+
+  const [editTodo, setEditTodo] = useState<string>(todo.todo);
+
   const handleDone = (id: number) => {
     setTodos(
       todos.map((todo) =>
@@ -21,8 +26,18 @@ const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 
+  const handleEdit = (e: React.FormEvent, id: number) => {
+    e.preventDefault();
+
+    setTodos(
+      todos.map((todo) => (todo.id === id ? { ...todo, todo: editTodo } : todo))
+    );
+    setEdit(false);
+  };
+
   return (
-    <div
+    <form
+      onSubmit={(e) => handleEdit(e, todo.id)}
       style={{
         display: "flex",
         justifyContent: "center",
@@ -30,13 +45,21 @@ const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
         gap: "100px",
       }}
     >
-      {todo.isDone ? (
+      {edit ? (
+        <input value={editTodo} onChange={(e) => setEditTodo(e.target.value)} />
+      ) : todo.isDone ? (
         <h2 style={{ textDecorationLine: "line-through" }}>{todo.todo}</h2>
       ) : (
         <h2>{todo.todo}</h2>
       )}
       <div style={{ display: "flex", cursor: "pointer" }}>
-        <span>
+        <span
+          onClick={() => {
+            if (!edit && !todo.isDone) {
+              setEdit(!edit);
+            }
+          }}
+        >
           <AiOutlineEdit />
         </span>
         <span onClick={() => handleDelete(todo.id)}>
@@ -46,7 +69,7 @@ const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
           <AiOutlineCheck />
         </span>
       </div>
-    </div>
+    </form>
   );
 };
 
