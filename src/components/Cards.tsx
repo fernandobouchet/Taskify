@@ -48,9 +48,9 @@ const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
       {edit ? (
         <input value={editTodo} onChange={(e) => setEditTodo(e.target.value)} />
       ) : todo.isDone ? (
-        <h2 style={{ textDecorationLine: "line-through" }}>{todo.todo}</h2>
+        <p style={{ textDecorationLine: "line-through" }}>{todo.todo}</p>
       ) : (
-        <h2>{todo.todo}</h2>
+        <p>{todo.todo}</p>
       )}
       <div style={{ display: "flex", cursor: "pointer" }}>
         <span
