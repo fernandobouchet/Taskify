@@ -9,9 +9,9 @@ interface Props {
 const InputField: React.FC<Props> = ({ todo, setTodo, handleAdd }) => {
   return (
     <form onSubmit={handleAdd} className="flex justify-center">
-      <div className="flex content-center w-72 px-4 border border-blue-200 rounded-full ">
+      <div className="flex justify-between w-72 border border-blue-200 rounded-full lg:w-96">
         <input
-          className="w-52 focus:outline-none"
+          className="w-52 focus:outline-none mx-3"
           type="input"
           placeholder="Enter a new task"
           value={todo}

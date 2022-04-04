@@ -37,12 +37,12 @@ const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
 
   return (
     <form
-      className="h-10 rounded-full flex justify-between border p-2 m-1 w-72 lg:w-96"
+      className=" h-10 rounded-full flex justify-between border p-2 m-1 w-72 lg:w-96"
       onSubmit={(e) => handleEdit(e, todo.id)}
     >
       {edit ? (
         <input
-          className="w-52 lg:w-72"
+          className="w-52 lg:w-72 bg-inherit"
           value={editTodo}
           onChange={(e) => setEditTodo(e.target.value)}
         />
