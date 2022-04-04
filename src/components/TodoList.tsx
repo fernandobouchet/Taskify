@@ -9,7 +9,7 @@ interface Props {
 
 const TodoList: React.FC<Props> = ({ todos, setTodos }) => {
   return (
-    <div>
+    <div className="flex flex-col items-center mt-4">
       {todos.map((todo) => (
         <Cards todo={todo} key={todo.id} todos={todos} setTodos={setTodos} />
       ))}

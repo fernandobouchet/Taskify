@@ -9,7 +9,7 @@ interface Props {
 const InputField: React.FC<Props> = ({ todo, setTodo, handleAdd }) => {
   return (
     <form onSubmit={handleAdd} className="flex justify-center">
-      <div className="flex content-center w-72 px-4 border border-blue-200 rounded-full">
+      <div className="flex content-center w-72 px-4 border border-blue-200 rounded-full ">
         <input
           className="w-52 focus:outline-none"
           type="input"

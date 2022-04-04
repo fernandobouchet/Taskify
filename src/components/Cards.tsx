@@ -37,36 +37,42 @@ const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
 
   return (
     <form
+      className="h-10 rounded-full flex justify-between border p-2 m-1 w-72 lg:w-96"
       onSubmit={(e) => handleEdit(e, todo.id)}
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "100px",
-      }}
     >
       {edit ? (
-        <input value={editTodo} onChange={(e) => setEditTodo(e.target.value)} />
+        <input
+          className="w-52 lg:w-72"
+          value={editTodo}
+          onChange={(e) => setEditTodo(e.target.value)}
+        />
       ) : todo.isDone ? (
         <p style={{ textDecorationLine: "line-through" }}>{todo.todo}</p>
       ) : (
         <p>{todo.todo}</p>
       )}
-      <div style={{ display: "flex", cursor: "pointer" }}>
+      <div className="flex w-14 justify-between cursor-pointer ">
         <span
+          className="transition ease-in-out delay-120 hover:scale-125 duration-300"
           onClick={() => {
             if (!edit && !todo.isDone) {
               setEdit(!edit);
             }
           }}
         >
-          <AiOutlineEdit />
+          <AiOutlineEdit title="Edit" />
         </span>
-        <span onClick={() => handleDelete(todo.id)}>
-          <AiOutlineDelete />
+        <span
+          className="transition ease-in-out delay-120 hover:scale-125 duration-300"
+          onClick={() => handleDelete(todo.id)}
+        >
+          <AiOutlineDelete title="Delete" />
         </span>
-        <span onClick={() => handleDone(todo.id)}>
-          <AiOutlineCheck />
+        <span
+          className="transition ease-in-out delay-120 hover:scale-125 duration-300"
+          onClick={() => handleDone(todo.id)}
+        >
+          <AiOutlineCheck title="Done" />
         </span>
       </div>
     </form>
