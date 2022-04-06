@@ -11,7 +11,8 @@ const InputField: React.FC<Props> = ({ todo, setTodo, handleAdd }) => {
     <form onSubmit={handleAdd} className="flex justify-center">
       <div className="flex justify-between w-72 border border-blue-200 rounded-full lg:w-96">
         <input
-          className="w-52 focus:outline-none mx-3"
+          autoFocus
+          className="w-52 focus:outline-none mx-3 lg:w-72"
           type="input"
           placeholder="Enter a new task"
           value={todo}
