@@ -37,7 +37,7 @@ const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
 
   return (
     <form
-      className=" h-10 rounded-full flex justify-between border p-2 m-1 w-72 lg:w-96"
+      className="h-auto rounded-[15px] items-center flex justify-between border border-blue-200 bg-blue-100 p-2 m-1 w-72 lg:w-96"
       onSubmit={(e) => handleEdit(e, todo.id)}
     >
       {edit ? (
@@ -47,9 +47,11 @@ const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
           onChange={(e) => setEditTodo(e.target.value)}
         />
       ) : todo.isDone ? (
-        <p style={{ textDecorationLine: "line-through" }}>{todo.todo}</p>
+        <p className="text-left" style={{ textDecorationLine: "line-through" }}>
+          {todo.todo}
+        </p>
       ) : (
-        <p>{todo.todo}</p>
+        <p className="text-left">{todo.todo}</p>
       )}
       <div className="flex w-14 justify-between cursor-pointer ">
         <span
