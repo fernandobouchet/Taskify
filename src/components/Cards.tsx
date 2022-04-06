@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { Todo } from "./Types";
 import { AiOutlineEdit, AiOutlineDelete, AiOutlineCheck } from "react-icons/ai";
@@ -35,6 +35,12 @@ const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
     setEdit(false);
   };
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [edit]);
+
   return (
     <form
       className="h-auto rounded-[15px] items-center flex justify-between border border-blue-200 bg-blue-100 p-2 m-1 w-72 lg:w-96"
@@ -42,6 +48,7 @@ const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
     >
       {edit ? (
         <input
+          ref={inputRef}
           className="w-52 lg:w-72 bg-inherit"
           value={editTodo}
           onChange={(e) => setEditTodo(e.target.value)}
