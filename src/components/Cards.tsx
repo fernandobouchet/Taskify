@@ -1,7 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { Todo } from "./Types";
-import { AiOutlineEdit, AiOutlineDelete, AiOutlineCheck } from "react-icons/ai";
+import {
+  AiOutlineEdit,
+  AiOutlineDelete,
+  AiOutlineCheck,
+  AiOutlineSave,
+} from "react-icons/ai";
 
 interface Props {
   todo: Todo;
@@ -54,36 +59,50 @@ const Cards: React.FC<Props> = ({ todo, todos, setTodos }) => {
           onChange={(e) => setEditTodo(e.target.value)}
         />
       ) : todo.isDone ? (
-        <p className="text-left" style={{ textDecorationLine: "line-through" }}>
+        <p
+          className="text-left w-52 lg:w-72"
+          style={{ textDecorationLine: "line-through" }}
+        >
           {todo.todo}
         </p>
       ) : (
-        <p className="text-left">{todo.todo}</p>
+        <p className="text-left w-52 lg:w-72">{todo.todo}</p>
       )}
-      <div className="flex w-14 justify-between cursor-pointer ">
-        <span
-          className="transition ease-in-out delay-120 hover:scale-125 duration-300"
-          onClick={() => {
-            if (!edit && !todo.isDone) {
-              setEdit(!edit);
-            }
-          }}
-        >
-          <AiOutlineEdit title="Edit" />
-        </span>
-        <span
-          className="transition ease-in-out delay-120 hover:scale-125 duration-300"
-          onClick={() => handleDelete(todo.id)}
-        >
-          <AiOutlineDelete title="Delete" />
-        </span>
-        <span
-          className="transition ease-in-out delay-120 hover:scale-125 duration-300"
-          onClick={() => handleDone(todo.id)}
-        >
-          <AiOutlineCheck title="Done" />
-        </span>
-      </div>
+      {edit ? (
+        <div className="flex w-14 justify-center">
+          <span
+            className="transition ease-in-out delay-120 hover:scale-125 duration-300 cursor-pointer"
+            onClick={(e) => handleEdit(e, todo.id)}
+          >
+            <AiOutlineSave title="Save" />
+          </span>
+        </div>
+      ) : (
+        <div className="flex w-14 justify-between cursor-pointer ">
+          <span
+            className="transition ease-in-out delay-120 hover:scale-125 duration-300"
+            onClick={() => {
+              if (!edit && !todo.isDone) {
+                setEdit(!edit);
+              }
+            }}
+          >
+            <AiOutlineEdit title="Edit" />
+          </span>
+          <span
+            className="transition ease-in-out delay-120 hover:scale-125 duration-300"
+            onClick={() => handleDelete(todo.id)}
+          >
+            <AiOutlineDelete title="Delete" />
+          </span>
+          <span
+            className="transition ease-in-out delay-120 hover:scale-125 duration-300"
+            onClick={() => handleDone(todo.id)}
+          >
+            <AiOutlineCheck title="Done" />
+          </span>
+        </div>
+      )}
     </form>
   );
 };
