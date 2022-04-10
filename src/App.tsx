@@ -1,14 +1,15 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import InputField from "./components/InputField";
 import TodoList from "./components/TodoList";
 import { Todo } from "./components/Types";
+import { LoadTodos, SaveTodos } from "./components/Functions";
 
 const App: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
 
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>(LoadTodos());
 
   const handleAdd = (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,6 +18,10 @@ const App: React.FC = () => {
       setTodo("");
     }
   };
+
+  useEffect(() => {
+    SaveTodos(todos);
+  }, [todos]);
 
   return (
     <div className="App">
