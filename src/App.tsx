@@ -5,6 +5,7 @@ import InputField from "./components/InputField";
 import TodoList from "./components/TodoList";
 import { Todo } from "./components/Types";
 import { LoadTodos, SaveTodos } from "./components/Functions";
+import Footer from "./components/Footer";
 
 const App: React.FC = () => {
   const [todo, setTodo] = useState<string>("");
@@ -24,15 +25,19 @@ const App: React.FC = () => {
   }, [todos]);
 
   return (
-    <div className="App">
-      <Header />
-      <InputField
-        todo={todo}
-        setTodo={setTodo}
-        handleAdd={(e) => handleAdd(e)}
-      />
-      <TodoList todos={todos} setTodos={setTodos} />
-    </div>
+    <>
+      {" "}
+      <div className="App">
+        <Header />
+        <InputField
+          todo={todo}
+          setTodo={setTodo}
+          handleAdd={(e) => handleAdd(e)}
+        />
+        <TodoList todos={todos} setTodos={setTodos} />
+      </div>
+      <Footer />
+    </>
   );
 };
 
